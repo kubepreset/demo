@@ -1,0 +1,7 @@
+apiVersion: app.example.org/v1alpha1
+kind: BackingService
+metadata:
+  name: back1
+status:
+  binding:
+    name: secret1

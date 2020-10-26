@@ -1,0 +1,13 @@
+apiVersion: service.binding/v1alpha2
+kind: ServiceBinding
+metadata:
+  name: sb
+spec:
+  application:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: app
+  service:
+    apiVersion: app.example.org/v1alpha1
+    kind: BackingService
+    name: back1
