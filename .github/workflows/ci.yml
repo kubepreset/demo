@@ -1,0 +1,19 @@
+name: Build
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+
+      - name: Run basic app tests
+        run: make test-app-basic
