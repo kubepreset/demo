@@ -21,7 +21,7 @@ helm repo add kubepreset https://kubepreset.github.io/helm-charts
 helm repo list
 helm repo update
 helm search repo kubepreset
-helm install my-kubepreset kubepreset/kubepreset --version 0.2.0
+helm install my-kubepreset kubepreset/kubepreset
 kubectl get deployment -w --request-timeout=10s
 cat backing-service-crd.yaml
 kubectl apply -f backing-service-crd.yaml
