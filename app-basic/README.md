@@ -21,8 +21,8 @@ cat service-binding-cr.yaml
 kubectl apply -f service-binding-cr.yaml
 kubectl get pod -w --request-timeout=20s
 export POD=`kubectl get pod --selector=environment=test -o jsonpath='{.items[*].metadata.name}'`
-kubectl exec -it ${POD}  -- cat /bindings/password
-kubectl exec -it ${POD}  -- cat /bindings/username
-kubectl exec -it ${POD}  -- cat /bindings/type
-kubectl exec -it ${POD}  -- cat /bindings/provider
+kubectl exec -it ${POD}  -- cat /bindings/sb/password
+kubectl exec -it ${POD}  -- cat /bindings/sb/username
+kubectl exec -it ${POD}  -- cat /bindings/sb/type
+kubectl exec -it ${POD}  -- cat /bindings/sb/provider
 ```

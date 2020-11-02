@@ -33,18 +33,18 @@ cat app-deployment.yaml
 kubectl apply -f app-deployment.yaml
 cat service-binding-cr.yaml
 kubectl apply -f service-binding-cr.yaml
-kubectl get pod --selector=environment=test --field-selector=status.phase=Running --request-timeout=30s -w
+kubectl get pod --selector=environment=test --field-selector=status.phase=Running --request-timeout=3m -w
 POD=`kubectl get pod --selector=environment=test -o jsonpath='{.items[*].metadata.name}'`
 source /usr/local/bin/assert.sh
-password=`kubectl exec ${POD}  -- cat /bindings/password`
+password=`kubectl exec ${POD}  -- cat /bindings/sb/password`
 assert_eq "passwd" "${password}" "not equivalent!"
 force_exit $?
-username=`kubectl exec ${POD}  -- cat /bindings/username`
+username=`kubectl exec ${POD}  -- cat /bindings/sb/username`
 assert_eq "guest" "${username}" "not equivalent!"
 force_exit $?
-typeofsecret=`kubectl exec ${POD}  -- cat /bindings/type`
+typeofsecret=`kubectl exec ${POD}  -- cat /bindings/sb/type`
 assert_eq "custom" "${typeofsecret}" "not equivalent!"
 force_exit $?
-provider=`kubectl exec ${POD}  -- cat /bindings/provider`
+provider=`kubectl exec ${POD}  -- cat /bindings/sb/provider`
 assert_eq "backingservice" "${provider}" "not equivalent!"
 force_exit $?
